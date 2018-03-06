@@ -16,7 +16,7 @@ namespace TwitterAPI.Controllers
 
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new User { Name = "Sample Adam", Email = "sample@email.com" });
+                _context.Users.Add(new User { name = "Sample Adam", email = "sample@email.com" });
                 _context.SaveChanges();
             }
         }
@@ -30,7 +30,7 @@ namespace TwitterAPI.Controllers
         [HttpGet("{id}", Name = "GetUser")]
         public IActionResult GetById(long id)
         {
-            var item = _context.Users.FirstOrDefault(t => t.Id == id);
+            var item = _context.Users.FirstOrDefault(t => t.id == id);
             if (item == null)
             {
                 return NotFound();
@@ -49,25 +49,25 @@ namespace TwitterAPI.Controllers
             _context.Users.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetUser", new { id = item.Id }, item);
+            return CreatedAtRoute("GetUser", new { id = item.id }, item);
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] User item)
         {
-            if (item == null || item.Id != id)
+            if (item == null || item.id != id)
             {
                 return BadRequest();
             }
 
-            var user = _context.Users.FirstOrDefault(t => t.Id == id);
+            var user = _context.Users.FirstOrDefault(t => t.id == id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            user.Name = item.Name;
-            user.Email = item.Email;
+            user.name = item.name;
+            user.email = item.email;
 
             _context.Users.Update(user);
             _context.SaveChanges();
@@ -77,7 +77,7 @@ namespace TwitterAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var user = _context.Users.FirstOrDefault(t => t.Id == id);
+            var user = _context.Users.FirstOrDefault(t => t.id == id);
             if (user == null)
             {
                 return NotFound();
