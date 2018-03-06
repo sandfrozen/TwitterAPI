@@ -11,9 +11,10 @@ using TwitterAPI.Models;
 namespace TwitterAPI.Migrations
 {
     [DbContext(typeof(TwitterAPIContext))]
-    partial class TwitterAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20180306212844_PostAddedMigration")]
+    partial class PostAddedMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
